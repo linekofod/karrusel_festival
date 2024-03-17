@@ -1,15 +1,16 @@
 ---
-const { artist, stage } = Astro.props;
+const { data } = Astro.props;
+console.log(data);
 ---
 
 <article>
   <a href="/singleview">
     <figure class="card_background">
-      <slot />
+      <img src="../../img/lineup/âme.png" alt="" />
     </figure>
-    <h3 class="h3_2">{artist}</h3>
-    <h4>{stage}</h4></a
-  >
+    <h3 class="h3_2">{data.name}</h3>
+    <h4>{data.stage}</h4>
+  </a>
 </article>
 
 <style>
@@ -31,11 +32,5 @@ const { artist, stage } = Astro.props;
   }
   h4 {
     margin-bottom: 60px;
-  }
-
-  @media screen and (max-width: 600px) {
-    h4 {
-      margin-bottom: 30px;
-    }
   }
 </style>

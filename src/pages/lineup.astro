@@ -4,31 +4,36 @@ import "../styles/lineup.css";
 import MainLayout from "../layouts/MainLayout.astro";
 import Cards from "../components/Cards.astro";
 import Button from "../components/Button.astro";
+import Artist from "../components/Artist.astro";
+
+const data = await fetch(
+  "https://qfcbmxwfnjdobywkwfei.supabase.co/rest/v1/lineup?order=id.asc&limit=3",
+  {
+    method: "GET",
+    headers: {
+      apikey:
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFmY2JteHdmbmpkb2J5d2t3ZmVpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTA0ODkyNDAsImV4cCI6MjAyNjA2NTI0MH0.4phUCO3QegbetzxWRquRHEWOYbF8TctgcydbEjOxnxI",
+    },
+  }
+).then((res) => res.json());
+
+console.log(data);
 ---
 
+<!-- 
+ Viser kun det første datasæt "https://qfcbmxwfnjdobywkwfei.supabase.co/rest/v1/lineup?id=eq.1"
+url: https://qfcbmxwfnjdobywkwfei.supabase.co/rest/v1/lineup?
+apikey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFmY2JteHdmbmpkb2J5d2t3ZmVpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTA0ODkyNDAsImV4cCI6MjAyNjA2NTI0MH0.4phUCO3QegbetzxWRquRHEWOYbF8TctgcydbEjOxnxI
+ -->
 <MainLayout title="Lineup">
   <!-- Program Thursday -->
-  <h2 class="h2_2">THURSDAY</h2>
-  <div class="artist_cards">
-    <Cards artist="ÂME" stage="MANEGEN">
-      <img
-        src="../../public/img/lineup/âme.png"
-        alt="Picture of the band Âme"
-      />
-    </Cards>
-    <Cards artist="KÖLSCH" stage="MANEGEN">
-      <img
-        src="../../public/img/lineup/kölsch.png"
-        alt="Picture of the artist Kölsch"
-      />
-    </Cards>
-    <Cards artist="MIRA" stage="TRIBUNEN">
-      <img
-        src="../../public/img/lineup/mira.png"
-        alt="Picture of the artist Mira"
-      />
-    </Cards>
-  </div>
+  <section class="artist_cards">
+    {
+      data.map((artist) => {
+        return <Artist data={artist} />;
+      })
+    }
+  </section>
 
   <!-- Artist rows -->
   <div class="artist_date">
@@ -54,11 +59,7 @@ import Button from "../components/Button.astro";
         type="no_box"
         link_to="/singleview">SCHWOFDROSSEL</Button
       >
-      <img
-        class="illustration_wave"
-        src="../../public/pynt_boelger.svg"
-        alt=""
-      />
+      <img class="illustration_wave" src="../../pynt_boelger.svg" alt="" />
     </div>
     <h3>BALKONEN</h3>
     <div class="artist_row">
@@ -89,33 +90,30 @@ import Button from "../components/Button.astro";
   </div>
 
   <!-- Program Friday -->
-  <h2 class="h2_2">FRIDAY</h2>
+  <!-- <h2 class="h2_2">FRIDAY</h2>
   <div class="artist_cards">
     <Cards artist="ACID PAULI" stage="TRIBUNEN">
       <img
-        src="../../public/img/lineup/acid_pauli.png"
+        src="../../img/lineup/acid_pauli.png"
         alt="Picture of the band Âme"
       />
     </Cards>
     <Cards artist="HAAI" stage="MANEGEN">
-      <img
-        src="../../public/img/lineup/haai.png"
-        alt="Picture of the artist Kölsch"
-      />
+      <img src="../../img/lineup/haai.png" alt="Picture of the artist Kölsch" />
     </Cards>
     <Cards artist="SKIN ON SKIN" stage="MANEGEN">
       <img
-        src="../../public/img/lineup/skin_on_skin.png"
+        src="../../img/lineup/skin_on_skin.png"
         alt="Picture of the artist Mira"
       />
     </Cards>
-  </div>
+  </div> -->
 
   <!-- Artist rows -->
-  <div class="artist_date">
+  <!-- <div class="artist_date">
     <h3>MANEGEN</h3>
     <div class="artist_row">
-      <img class="illustration_woman" src="../../public/dame_glow.svg" alt="" />
+      <img class="illustration_woman" src="../../dame_glow.svg" alt="" />
       <Button size="web" type="no_box" link_to="/singleview">NARCISS</Button
       ><span class="dot"></span><Button
         size="web"
@@ -167,34 +165,34 @@ import Button from "../components/Button.astro";
         link_to="/singleview">TIGHT CHERRY</Button
       >
     </div>
-  </div>
+  </div> -->
 
   <!-- Program Saturday -->
-  <div class="artist_date">
+  <!-- <div class="artist_date">
     <h2 class="h2_2">SATURDAY</h2>
     <div class="artist_cards">
       <Cards artist="FJAAK DJ SET" stage="MANEGEN">
         <img
-          src="../../public/img/lineup/fjaak_dj_set.png"
+          src="../../img/lineup/fjaak_dj_set.png"
           alt="Picture of the band Âme"
         />
       </Cards>
       <Cards artist="RSS DISCO" stage="TRIBUNEN">
         <img
-          src="../../public/img/lineup/rss_disco.png"
+          src="../../img/lineup/rss_disco.png"
           alt="Picture of the artist Kölsch"
         />
       </Cards>
       <Cards artist="RICHIE HAWTIN" stage="MANEGEN">
         <img
-          src="../../public/img/lineup/richie_hawtin.png"
+          src="../../img/lineup/richie_hawtin.png"
           alt="Picture of the artist Mira"
         />
       </Cards>
-    </div>
+    </div> -->
 
-    <!-- Artist rows -->
-    <h3>MANEGEN</h3>
+  <!-- Artist rows -->
+  <!-- <h3>MANEGEN</h3>
     <div class="artist_row">
       <Button size="web" type="no_box" link_to="/singleview">ANNA LOGIC</Button
       ><span class="dot"></span><Button
@@ -239,5 +237,5 @@ import Button from "../components/Button.astro";
         link_to="/singleview">OKINE</Button
       >
     </div>
-  </div>
+  </div> -->
 </MainLayout>
