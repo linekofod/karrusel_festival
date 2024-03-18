@@ -1,0 +1,40 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+export async function getStaticPaths() {
+  const data = await fetch(
+    "https://qfcbmxwfnjdobywkwfei.supabase.co/rest/v1/lineup",
+    {
+      method: "GET",
+      headers: {
+        apikey:
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFmY2JteHdmbmpkb2J5d2t3ZmVpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTA0ODkyNDAsImV4cCI6MjAyNjA2NTI0MH0.4phUCO3QegbetzxWRquRHEWOYbF8TctgcydbEjOxnxI",
+      },
+    }
+  ).then((response) => response.json());
+
+  return data.map((artist) => {
+    return {
+      params: { slug: artist.slug },
+      props: { myData: artist },
+    };
+  });
+}
+
+const { myData } = Astro.props;
+console.log(myData);
+// {
+//   id: 1,
+//   name: 'ÂME',
+//   stage: 'MANEGEN',
+//   description: 'Âme is the producer duo consisting of Frank Wiedemann and Kristian Beyer. Drawing inspiration from Chicago house and Detroit techno, Âme knows how to create a unique take on melodic techno and beyond. The goal is to make you forget about time and space. Âme will be a DJ performance solely by Kristian Beyer at Karrusel.',
+//   image: 'âme.png',
+//   'show date': 'THURSDAY',
+//   spotify: 'https://open.spotify.com/artist/5muFO8VqYRCRW13EkvX564',
+//   instagram: 'https://www.instagram.com/ame_innervisions/?hl=da',
+//   slug: 'ame'
+// }
+---
+
+<!-- <MainLayout>
+  <h1>{myData.name}</h1>
+</MainLayout> -->

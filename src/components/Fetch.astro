@@ -1,18 +1,17 @@
 ---
-import Button from "../components/Button.astro";
+import Button from "./Button.astro";
 const { data } = Astro.props;
-console.log(data);
 ---
 
-<article>
-  <a href="/singleview">
+<a href={`artist/${data.slug}`}>
+  <article>
     <figure class="card_background">
       <img src="../../img/lineup/âme.png" alt="" />
     </figure>
     <h3 class="h3_2">{data.name}</h3>
     <h4>{data.stage}</h4>
-  </a>
-</article>
+  </article>
+</a>
 
 <style>
   .card_background {
