@@ -8,7 +8,29 @@ import Header from "../components/Header.astro";
 ---
 
 <MainLayout>
-  <article>
+  <article class="background">
+    <div class="mobile_img"></div>
+    <div class="indhold_flex">
+      <div class="information">
+        <h3>LOCATION</h3>
+        <p class="stage">MANEGEN</p>
+        <h3>SHOW DATE</h3>
+        <p class="date">SATURDAY</p>
+        <h3>MORE</h3>
+        <a class="spotify" href="">Spotify</a>
+        <a class="insta" href="">Instagram</a>
+      </div>
+
+      <div class="artist_name">
+        <h1 class="name">SSPFDJ</h1>
+        <h2 class="description">Not many DJs can claim to experience as meteoric, grassroots ascent as SPFDJ. Having established a remarkable energy, style and attitude on the underground techno circuits of both London and Berlin, she is known for inspiring debauchery and sweat-soaked hedonism on an international scale.</h2>
+        <Button size="box" type="web" link_to="/lineup">See all artists</Button>
+      </div>
+    </div>
+  </article>
+</MainLayout>
+
+<!--   <article>
     <div class="artist_img"></div>
     <div class="grey_frame"></div>
     <div class="single_grid">
@@ -22,10 +44,9 @@ import Header from "../components/Header.astro";
         <a class="insta" href="">Instagram</a>
       </div>
       <div class="titel_flex">
-        <h1>Artist Name</h1>
-        <h2>Not many DJs can claim to experience as meteoric, grassroots ascent as SPFDJ. Having established a remarkable energy, style and attitude on the underground techno circuits of both London and Berlin, she is known for inspiring debauchery and sweat-soaked hedonism on an international scale.</h2>
+        <h1 class="artist_name">Artist Name</h1>
+        <h2 class="artist_info">Not many DJs can claim to experience as meteoric, grassroots ascent as SPFDJ. Having established a remarkable energy, style and attitude on the underground techno circuits of both London and Berlin, she is known for inspiring debauchery and sweat-soaked hedonism on an international scale.</h2>
         <Button size="box">See all artists</Button>
       </div>
     </div>
-  </article>
-</MainLayout>
+  </article> -->
