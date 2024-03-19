@@ -12,19 +12,19 @@ const data = await fetch(url, options).then(response => response.json());
 return data.map((artist) => {
     return {
         params: {slug: artist.slug}, 
-        props: { artist },
+        props: {myData:artist },
     };
 }); 
 }
-const {artist} = Astro.props;
+const {myData} = Astro.props;
 ---
 
 <article>
-  <div class="artist_img">{artist.}</div>
-  <p class="stage">{stage}</p>
-  <p class="date">{date}</p>
-  <a class="spotify" href="">{spotify}</a>
-  <a class="insta" href="">{insta}</a>
-  <h1 class="artist_name">{name}</h1>
-  <h2 class="artist_info">{info}</h2>
+  <div class="artist_img">{myData.image}</div>
+  <p class="stage">{myData.stage}</p>
+  <p class="date">{myData.date}</p>
+  <a class="spotify" href="">{myData.spotify}</a>
+  <a class="insta" href="">{myData.instagram}</a>
+  <h1 class="artist_name">{myData.name}</h1>
+  <h2 class="artist_info">{myData.description}</h2>
 </article> -->
