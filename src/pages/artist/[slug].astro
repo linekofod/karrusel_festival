@@ -23,21 +23,10 @@ export async function getStaticPaths() {
 
 const { myData } = Astro.props;
 console.log(myData);
-// {
-//   id: 1,
-//   name: 'ÂME',
-//   stage: 'MANEGEN',
-//   description: 'Âme is the producer duo consisting of Frank Wiedemann and Kristian Beyer. Drawing inspiration from Chicago house and Detroit techno, Âme knows how to create a unique take on melodic techno and beyond. The goal is to make you forget about time and space. Âme will be a DJ performance solely by Kristian Beyer at Karrusel.',
-//   image: 'âme.png',
-//   'show date': 'THURSDAY',
-//   spotify: 'https://open.spotify.com/artist/5muFO8VqYRCRW13EkvX564',
-//   instagram: 'https://www.instagram.com/ame_innervisions/?hl=da',
-//   slug: 'ame'
-// }
 ---
 
 <MainLayout>
-  <div class="artist_image">
+  <!-- <div class="artist_image">
     <section class="grid_1-1">
       <article class="artist_info">
         <h1>{myData.name}</h1>
@@ -58,17 +47,40 @@ console.log(myData);
         >
       </article>
     </section>
-  </div>
+  </div> -->
+  <article class="background">
+    <div class="mobile_img"></div>
+    <div class="indhold_flex">
+      <div class="information">
+        <h3>LOCATION</h3>
+        <h4 class="stage">{myData.stage}</h4>
+        <h3>SHOW DATE</h3>
+        <h4 class="date">{myData.date}</h4>
+        <h3>MORE</h3>
+        <Button size="web" type="no_box" link_to={myData.spotify}
+          >SPOTIFY</Button
+        >
+        <Button size="web" type="no_box" link_to={myData.instagram}
+          >INSTAGRAM</Button
+        >
+      </div>
+
+      <div class="artist_name">
+        <h1 class="name">{myData.name}</h1>
+        <h2 class="description">{myData.description}</h2>
+        <Button size="box" type="web" link_to="/lineup">See all artists</Button>
+      </div>
+    </div>
+  </article>
 </MainLayout>
 
 <style>
-  .artist_image {
+  /* .artist_image {
     background-image: url(../../../singleview_artist.jpg);
     margin-left: -2em;
     margin-right: -2em;
     height: 1131px;
     margin-top: -8em;
-    /* Position: Baggrundsbilledet */
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -102,81 +114,92 @@ console.log(myData);
   }
   .artist_info:last-child h4 {
     margin-bottom: 25px;
+  } */
+
+  @media screen and (min-width: 700px) {
+    h2 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    h4 {
+      margin-bottom: 20px;
+    }
+    .background {
+      background-image: url("/singleview_artist.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      height: 100vh;
+      margin-left: -2em;
+      margin-right: -2em;
+      margin-top: -8em;
+      z-index: -1;
+    }
+
+    .indhold_flex {
+      /* display: flex;
+      position: absolute;
+      bottom: 0;
+      background-color: rgba(09, 09, 09, 0.5); */
+      display: grid;
+      grid-template-columns: 300px auto;
+      position: absolute;
+      background-color: rgba(09, 09, 09, 0.5);
+      height: 50%;
+      position: absolute;
+      bottom: 0;
+    }
+    .information {
+      display: flex;
+      flex-direction: column;
+      margin: 20% 0 0 30%;
+    }
+    .information p {
+      margin-bottom: 2em;
+    }
+    .artist_name {
+      margin: 2% 15% 0 20%;
+    }
+    Button {
+      width: 200px;
+      margin-top: 50px;
+      margin-bottom: 50px;
+    }
+  }
+
+  @media screen and (max-width: 700px) {
+    .mobile_img {
+      content: url("../public/singleview_artist.jpg");
+      width: 100vw;
+      margin-left: -2em;
+      margin-right: -2em;
+      margin-top: -8em;
+      z-index: -1;
+      position: relative;
+    }
+    .indhold_flex {
+      display: flex;
+      flex-direction: column-reverse;
+      gap: 2em;
+    }
+    .artist_name {
+      margin-left: 15%;
+      margin-right: 12%;
+    }
+    .information {
+      margin-left: 15%;
+      margin-right: 20%;
+      margin-bottom: 10%;
+    }
+
+    h2 {
+      font-size: 14px;
+      margin-bottom: 5%;
+    }
+    button {
+      font-size: 20px;
+      margin-top: 15%;
+      margin-bottom: 10%;
+    }
   }
 </style>
-
-<!-- @media screen and (min-width: 700px) {
-  h2 {
-    font-size: 24px;
-  }
-  .background {
-    background-image: url("../public/singleview_artist.jpg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 100vh;
-    margin-left: -2em;
-    margin-right: -2em;
-    margin-top: -8em;
-    z-index: -1;
-  }
-
-  .indhold_flex {
-    display: flex;
-    position: absolute;
-    bottom: 0;
-    background-color: rgba(09, 09, 09, 0.5);
-  }
-  .information {
-    margin-left: 10%;
-    margin-top: 2%;
-  }
-  .information p {
-    margin-bottom: 2em;
-  }
-  .artist_name {
-    margin-right: 20%;
-    margin-left: 15%;
-  }
-  Button {
-    width: 200px;
-    margin-top: 50px;
-    margin-bottom: 50px;
-  }
-}
-
-@media screen and (max-width: 700px) {
-  .mobile_img {
-    content: url("../public/singleview_artist.jpg");
-    width: 100vw;
-    margin-left: -2em;
-    margin-right: -2em;
-    margin-top: -8em;
-    z-index: -1;
-    position: relative;
-  }
-  .indhold_flex {
-    display: flex;
-    flex-direction: column-reverse;
-    gap: 2em;
-  }
-  .artist_name {
-    margin-left: 15%;
-    margin-right: 12%;
-  }
-  .information {
-    margin-left: 15%;
-    margin-right: 20%;
-    margin-bottom: 10%;
-  }
-
-  h2 {
-    font-size: 14px;
-    margin-bottom: 5%;
-  }
-  button {
-    font-size: 20px;
-    margin-top: 15%;
-    margin-bottom: 10%;
-  }
-} -->
