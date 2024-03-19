@@ -2,16 +2,12 @@
 import MainLayout from "../../layouts/MainLayout.astro";
 import Button from "../../components/Button.astro";
 export async function getStaticPaths() {
-  const data = await fetch(
-    "https://qfcbmxwfnjdobywkwfei.supabase.co/rest/v1/lineup",
-    {
-      method: "GET",
-      headers: {
-        apikey:
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFmY2JteHdmbmpkb2J5d2t3ZmVpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTA0ODkyNDAsImV4cCI6MjAyNjA2NTI0MH0.4phUCO3QegbetzxWRquRHEWOYbF8TctgcydbEjOxnxI",
-      },
-    }
-  ).then((response) => response.json());
+  const data = await fetch("https://qfcbmxwfnjdobywkwfei.supabase.co/rest/v1/lineup", {
+    method: "GET",
+    headers: {
+      apikey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFmY2JteHdmbmpkb2J5d2t3ZmVpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTA0ODkyNDAsImV4cCI6MjAyNjA2NTI0MH0.4phUCO3QegbetzxWRquRHEWOYbF8TctgcydbEjOxnxI",
+    },
+  }).then((response) => response.json());
 
   return data.map((artist) => {
     return {
@@ -35,12 +31,8 @@ console.log(myData);
         <h3>SHOW DATE</h3>
         <h4 class="date">{myData.date}</h4>
         <h3>MORE</h3>
-        <Button size="web" type="no_box" link_to={myData.spotify}
-          >SPOTIFY</Button
-        >
-        <Button size="web" type="no_box" link_to={myData.instagram}
-          >INSTAGRAM</Button
-        >
+        <Button size="web" type="no_box" link_to={myData.spotify}>SPOTIFY</Button>
+        <Button size="web" type="no_box" link_to={myData.instagram}>INSTAGRAM</Button>
       </div>
 
       <div class="artist_name">
@@ -72,7 +64,6 @@ console.log(myData);
       margin-top: -8em;
       z-index: -1;
     }
-
     .indhold_flex {
       display: grid;
       grid-template-columns: 300px auto;
