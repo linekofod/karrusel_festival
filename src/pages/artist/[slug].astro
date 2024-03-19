@@ -1,5 +1,6 @@
 ---
 import MainLayout from "../../layouts/MainLayout.astro";
+import Button from "../../components/Button.astro";
 export async function getStaticPaths() {
   const data = await fetch(
     "https://qfcbmxwfnjdobywkwfei.supabase.co/rest/v1/lineup",
@@ -36,6 +37,70 @@ console.log(myData);
 ---
 
 <MainLayout>
-  <h1>{myData.name}</h1>
-  <h2>{myData.description}</h2>
+  <div class="artist_image">
+    <section class="grid_1-1">
+      <article class="artist_info">
+        <h1>{myData.name}</h1>
+        <h4>{myData.description}</h4>
+        <Button size="web" type="box" link_to="/lineup">See all artists</Button>
+      </article>
+      <article class="artist_info">
+        <h3>LOCATION</h3>
+        <h4>{myData.stage}</h4>
+        <h3>SHOW DATE</h3>
+        <h4>{myData.date}</h4>
+        <h3>MORE</h3>
+        <Button size="web" type="no_box" link_to={myData.spotify}
+          >SPOTIFY</Button
+        >
+        <Button size="web" type="no_box" link_to={myData.instagram}
+          >INSTAGRAM</Button
+        >
+      </article>
+    </section>
+  </div>
 </MainLayout>
+
+<style>
+  .artist_image {
+    background-image: url(../../../singleview_artist.jpg);
+    margin-left: -2em;
+    margin-right: -2em;
+    height: 1131px;
+    margin-top: -8em;
+    /* Position: Baggrundsbilledet */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+  }
+  .grid_1-1 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    position: absolute;
+    top: 30%;
+    background-color: rgba(09, 09, 09, 0.5);
+    position: absolute;
+    bottom: 0;
+  }
+  h4 {
+    max-width: 65ch;
+  }
+  .artist_info {
+    display: flex;
+    flex-direction: column;
+    margin-left: 80px;
+  }
+  .artist_info:first-child h4 {
+    margin-bottom: 50px;
+  }
+  .artist_info:last-child {
+    margin-top: 120px;
+    align-items: end;
+    margin-right: 80px;
+  }
+  .artist_info:last-child h4 {
+    margin-bottom: 25px;
+  }
+</style>

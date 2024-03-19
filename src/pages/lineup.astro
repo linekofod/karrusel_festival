@@ -4,10 +4,11 @@ import "../styles/lineup.css";
 import MainLayout from "../layouts/MainLayout.astro";
 import Cards from "../components/Cards.astro";
 import Button from "../components/Button.astro";
-import Fetch from "../components/Fetch.astro";
+import ArtistCards from "../components/ArtistCards.astro";
+import ArtistRows from "../components/ArtistRows.astro";
 
 const data = await fetch(
-  "https://qfcbmxwfnjdobywkwfei.supabase.co/rest/v1/lineup",
+  "https://qfcbmxwfnjdobywkwfei.supabase.co/rest/v1/lineup?order=id.asc",
   {
     method: "GET",
     headers: {
@@ -18,38 +19,18 @@ const data = await fetch(
 ).then((res) => res.json());
 ---
 
-<!-- 
- Viser kun det første datasæt "https://qfcbmxwfnjdobywkwfei.supabase.co/rest/v1/lineup?id=eq.1"
-url: https://qfcbmxwfnjdobywkwfei.supabase.co/rest/v1/lineup?
-apikey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFmY2JteHdmbmpkb2J5d2t3ZmVpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTA0ODkyNDAsImV4cCI6MjAyNjA2NTI0MH0.4phUCO3QegbetzxWRquRHEWOYbF8TctgcydbEjOxnxI
- -->
 <MainLayout title="Lineup">
   <!-- Program Thursday -->
+  <h2 class="h2_2">THURSDAY</h2>
   <section class="artist_cards">
     {
       data.map((artist) => {
-        return <Fetch data={artist} />;
+        return <ArtistCards data={artist} />;
       })
     }
   </section>
-  <!-- <h2 class="h2_2">THURSDAY</h2>
-  <div class="artist_cards">
-    <Cards artist="ÂME" stage="MANEGEN">
-      <img src="../../img/lineup/âme.png" alt="Picture of the band Âme" />
-    </Cards>
-    <Cards artist="KÖLSCH" stage="MANEGEN">
-      <img
-        src="../../img/lineup/kölsch.png"
-        alt="Picture of the artist Kölsch"
-      />
-    </Cards>
-    <Cards artist="MIRA" stage="TRIBUNEN">
-      <img src="../../img/lineup/mira.png" alt="Picture of the artist Mira" />
-    </Cards>
-  </div> -->
 
-  <!-- Artist rows -->
-  <div class="artist_date">
+  <!-- <div class="artist_date">
     <h3>MANEGEN</h3>
     <div class="artist_row">
       <Button size="web" type="no_box" link_to="/singleview">MCADAM</Button
@@ -100,7 +81,23 @@ apikey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF
         link_to="/singleview">STORM</Button
       >
     </div>
-  </div>
+  </div> -->
+
+  <!-- <h2 class="h2_2">THURSDAY</h2>
+  <div class="artist_cards">
+    <Cards artist="ÂME" stage="MANEGEN">
+      <img src="../../img/lineup/âme.png" alt="Picture of the band Âme" />
+    </Cards>
+    <Cards artist="KÖLSCH" stage="MANEGEN">
+      <img
+        src="../../img/lineup/kölsch.png"
+        alt="Picture of the artist Kölsch"
+      />
+    </Cards>
+    <Cards artist="MIRA" stage="TRIBUNEN">
+      <img src="../../img/lineup/mira.png" alt="Picture of the artist Mira" />
+    </Cards>
+  </div> -->
 
   <!-- Program Friday -->
   <!-- <h2 class="h2_2">FRIDAY</h2>
